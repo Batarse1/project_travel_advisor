@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useLoadScript } from '@react-google-maps/api';
 import { CssBaseline, Grid } from '@material-ui/core';
 
 import { getPlacesData, getWeatherData } from './api/travelAdvisorAPI';
@@ -58,6 +59,14 @@ const App = () => {
 
     setCoords({ lat, lng });
   };
+
+  const reactMapKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
+
+  const { isLoaded } = useLoadScript({
+    googleMapsApiKey: reactMapKey,
+  });
+
+  if (!isLoaded) return 'Loading...';
 
   return (
     <>
