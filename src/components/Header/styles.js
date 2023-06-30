@@ -3,6 +3,7 @@ import { alpha, makeStyles } from '@material-ui/core/styles';
 export default makeStyles((theme) => ({
   title: {
     display: 'none',
+    marginRight: '10px',
     [theme.breakpoints.up('sm')]: {
       display: 'block',
     },
@@ -47,8 +48,14 @@ export default makeStyles((theme) => ({
     justifyContent: 'space-between',
   },
   buttonContainer: {
-    marginLeft: theme.spacing(2.5),
+    marginLeft: theme.spacing(1),
     display: 'flex',
     alignItems: 'center',
+  },
+  logo: {
+    width: '70px',
+    marginTop: theme.spacing(0.5),
+    marginBottom: theme.spacing(0.5),
+    marginRight: theme.spacing(0.5),
   },
 }));

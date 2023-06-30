@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useLoadScript } from '@react-google-maps/api';
-import { CssBaseline, Grid } from '@material-ui/core';
-
+import { CssBaseline, Grid, ThemeProvider } from '@material-ui/core';
+import { createTheme } from '@material-ui/core/styles';
 import { getPlacesData } from './api/travelAdvisorAPI';
 import Header from './components/Header/Header';
 import List from './components/List/List';
 import Map from './components/Map/Map';
+import './App.css';
+import Footer from './components/Footer/footer';
 
 const App = () => {
   const [type, setType] = useState('restaurants');
@@ -19,6 +21,7 @@ const App = () => {
 
   const [childClicked, setChildClicked] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(({ coords: { latitude, longitude } }) => {
@@ -52,12 +55,28 @@ const App = () => {
     googleMapsApiKey: reactMapKey,
   });
 
+  const theme = createTheme({
+    palette: {
+      type: darkMode ? 'dark' : 'light',
+      primary: {
+        main: darkMode ? '#407C87' : '#A7E0E9',
+      },
+      secondary: {
+        main: '#FFF7EC',
+      },
+    },
+  });
+
+  const handleThemeChange = () => {
+    setDarkMode(!darkMode);
+  };
+
   if (!isLoaded) return 'Loading...';
 
   return (
-    <>
+    <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Header />
+      <Header darkMode={darkMode} handleThemeChange={handleThemeChange} />
       <Grid container spacing={3} style={{ width: '100%' }}>
         <Grid item xs={12} md={4}>
           <List
@@ -80,7 +99,8 @@ const App = () => {
           />
         </Grid>
       </Grid>
-    </>
+      <Footer />
+    </ThemeProvider>
   );
 };
 

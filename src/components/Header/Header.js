@@ -4,17 +4,18 @@ import {
   Toolbar,
   Typography,
   Box,
-  Button,
   Modal,
   IconButton,
 } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 import SearchOutlinedIcon from '@material-ui/icons/SearchOutlined';
+import Brightness4Icon from '@material-ui/icons/Brightness4';
+import CloudTwoToneIcon from '@material-ui/icons/CloudTwoTone';
 import axios from 'axios';
 import './style.css';
 import useStyles from './styles';
 
-const Header = () => {
+const Header = ({ handleThemeChange }) => {
   const classes = useStyles();
   const [data, setData] = useState({
     celcius: 22,
@@ -55,8 +56,6 @@ const Header = () => {
           } else {
             imagePath = '/images/cloud.png';
           }
-          // eslint-disable-next-line no-console
-          console.log(res.data);
           setData({
             ...data,
             celcius: res.data.main.temp,
@@ -83,21 +82,32 @@ const Header = () => {
     <>
       <AppBar position="static">
         <Toolbar className={classes.toolbar}>
-          <Typography variant="h5" className={classes.title}>
-            Travel Advisor
-          </Typography>
+          <Box display="flex" alignItems="center">
+            <img src="/images/logo.png" alt="Logo" className={classes.logo} />
+            <Typography variant="h4" className={classes.title}>
+              TripForecast
+            </Typography>
+            <IconButton
+              onClick={handleThemeChange}
+              aria-label="Toggle Dark Mode"
+              color="inherit"
+            >
+              <Brightness4Icon />
+            </IconButton>
+          </Box>
+
           <Box display="flex" alignItems="center">
             <Typography variant="h6" className={classes.title}>
-              Explore how is the weather today
+              Explore how is the weather today:
             </Typography>
             <div className={classes.buttonContainer}>
-              <Button
-                variant="contained"
-                style={{ backgroundColor: '#ECECEC', color: 'black' }}
+              <IconButton
+                className={classes.iconButton}
                 onClick={handleSearch}
+                color="inherit"
               >
-                Check It!
-              </Button>
+                <CloudTwoToneIcon fontSize="large" />
+              </IconButton>
             </div>
           </Box>
         </Toolbar>
@@ -113,7 +123,7 @@ const Header = () => {
       >
         <div
           style={{
-            background: 'linear-gradient(130deg, #3f51b5, rgb(5, 5, 199))',
+            background: 'linear-gradient(130deg, #A5DBDD, #407C87)',
             border: '1px solid white',
             borderRadius: '18px',
             position: 'relative',

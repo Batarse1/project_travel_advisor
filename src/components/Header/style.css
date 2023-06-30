@@ -5,7 +5,7 @@
   margin-top: 50px;
   text-align: center;
   color: white;
-  background: linear-gradient(130deg, #3f51b5, rgb(5, 5, 199));
+  background: linear-gradient(130deg, #A5DBDD, #407C87);
 }
 
 .search {
@@ -28,7 +28,7 @@
 }
 
 .search input:hover {
-  background-color: #17246F;
+  background-color: #407C87;
   color: white;
   border: 1px solid white;
 }
@@ -52,7 +52,7 @@
 }
 
 .search button:hover {
-  background-color: #17246F;
+  background-color: #407C87;
   color: white;
   border: 1px solid white;
 }
