@@ -1,5 +1,6 @@
 import React from 'react';
 import GoogleMapReact from 'google-map-react';
+import { useLoadScript } from '@react-google-maps/api';
 import { Paper, Typography, useMediaQuery } from '@material-ui/core';
 import LocationOnOutlinedIcon from '@material-ui/icons/LocationOnOutlined';
 import Rating from '@material-ui/lab/Rating';
@@ -14,9 +15,22 @@ const defaultCenter = {
 
 const MapItem = ({ className, children }) => <div className={className}>{children}</div>;
 
+const libraries = ['geometry', 'drawing', 'places'];
+
 const Map = ({ coords, places, setCoords, setBounds, setChildClicked }) => {
   const matches = useMediaQuery('(min-width:600px)');
   const classes = useStyles();
+
+  const reactMapKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
+
+  const { isLoaded } = useLoadScript({
+    googleMapsApiKey: reactMapKey,
+    version: '3.exp',
+    libraries,
+  });
+
+  if (!isLoaded) return 'Loading...';
+
   return (
     <div className={classes.mapContainer}>
       <GoogleMapReact
