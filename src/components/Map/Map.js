@@ -1,5 +1,6 @@
 import React from 'react';
 import GoogleMapReact from 'google-map-react';
+import { useLoadScript } from '@react-google-maps/api';
 import { Paper, Typography, useMediaQuery } from '@material-ui/core';
 import LocationOnOutlinedIcon from '@material-ui/icons/LocationOnOutlined';
 import Rating from '@material-ui/lab/Rating';
@@ -7,13 +8,33 @@ import Rating from '@material-ui/lab/Rating';
 import mapStyles from '../../mapStyles';
 import useStyles from './styles.js';
 
+const defaultCenter = {
+  lat: 13.680600000000013,
+  lng: -89.1803,
+};
+
+const MapItem = ({ className, children }) => <div className={className}>{children}</div>;
+
+const libraries = ['geometry', 'drawing', 'places'];
+
 const Map = ({ coords, places, setCoords, setBounds, setChildClicked }) => {
   const matches = useMediaQuery('(min-width:600px)');
   const classes = useStyles();
+
+  const reactMapKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
+
+  const { isLoaded } = useLoadScript({
+    googleMapsApiKey: reactMapKey,
+    version: '3.exp',
+    libraries,
+  });
+
+  if (!isLoaded) return 'Loading...';
+
   return (
     <div className={classes.mapContainer}>
       <GoogleMapReact
-        defaultCenter={coords}
+        defaultCenter={defaultCenter}
         center={coords}
         defaultZoom={14}
         margin={[50, 50, 50, 50]}
@@ -25,11 +46,9 @@ const Map = ({ coords, places, setCoords, setBounds, setChildClicked }) => {
         onChildClick={(child) => setChildClicked(child)}
       >
         {places.length && places.map((place, i) => (
-          <div
+          <MapItem
             className={classes.markerContainer}
-            // eslint-disable-next-line react/no-unknown-property
             lat={Number(place.latitude)}
-            // eslint-disable-next-line react/no-unknown-property
             lng={Number(place.longitude)}
             key={i}
           >
@@ -45,7 +64,7 @@ const Map = ({ coords, places, setCoords, setBounds, setChildClicked }) => {
                   <Rating name="read-only" size="small" value={Number(place.rating)} readOnly />
                 </Paper>
               )}
-          </div>
+          </MapItem>
         ))}
       </GoogleMapReact>
     </div>

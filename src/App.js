@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useLoadScript } from '@react-google-maps/api';
 import { CssBaseline, Grid, ThemeProvider } from '@material-ui/core';
 import { createTheme } from '@material-ui/core/styles';
 import { getPlacesData } from './api/travelAdvisorAPI';
@@ -49,12 +48,6 @@ const App = () => {
     }
   }, [bounds, type]);
 
-  const reactMapKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
-
-  const { isLoaded } = useLoadScript({
-    googleMapsApiKey: reactMapKey,
-  });
-
   const theme = createTheme({
     palette: {
       type: darkMode ? 'dark' : 'light',
@@ -70,8 +63,6 @@ const App = () => {
   const handleThemeChange = () => {
     setDarkMode(!darkMode);
   };
-
-  if (!isLoaded) return 'Loading...';
 
   return (
     <ThemeProvider theme={theme}>
