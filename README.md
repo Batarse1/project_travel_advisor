@@ -4,23 +4,15 @@
 
 ## Introducción
 
-Construye e implementa una aplicación avanzada de compañero de viaje utilizando Google Maps. Con geolocalización, la API de Google Maps, búsqueda de lugares, obtención de restaurantes, hoteles y atracciones basadas en la ubicación mediante las API especializadas de RapidAPI, filtrado de datos y mucho más, esta aplicación de Asesor de Viajes es la mejor aplicación de mapas que puedes encontrar actualmente en YouTube y en todo Internet.
+La aplicación TripForecast está orientada a brindar recomendaciones de viaje y actuar como un enlace entre el cliente y las distintas compañías,locales o empresas que brindan algún tipo de servicio. Las personas cuando viajan o visitan otro país desean conocer lugares nuevos y degustar de la gastronomía del país donde se encuentran, es así como un Travel Advisor les beneficia, siendo su mejor opción. Ellos podrán localizar, contactar, reservar, obtener información, ver recomendaciones, comparar y sobre todo encontrar el mejor precio entre todos los lugares alrededor de ellos. De igual forma se encuentra la opción de revisar el estado del clima en tiempo real de cualquier ciudad, esto ayudando a los viajeros en consultar las condiciones del clima para estar preparados en su viaje. Algunas de las funcionalidades importantes a destacar del proyecto son: la geolocalización, integración de Google Maps, búsqueda de lugares, obtención de restaurantes, hoteles y atracciones según la ubicación, consulta del clima para cualquier ciudad que se desea visitar. El área es tanto Social como de Sistemas de Información Geográfica, donde la idea principal es agregar funcionalidades que vengan a favorecer ambas temáticas y corregir ciertos problemas o errores que el proyecto existente contenga. En resumen, la aplicación Travel Advisor es una herramienta integral para los viajeros que buscan la mejor experiencia en sus viajes.
 
-En este video, aprenderás:
+APIs Utilizadas:
 
-- Prácticas avanzadas de React, como la estructura de carpetas y archivos, hooks y refs.
-- Creación de una interfaz de usuario utilizando Material UI.
-- Trabajo con la API de Google Maps.
-- Y lo más importante, obtener datos de fuentes ilimitadas utilizando RapidAPI.
-- Básicamente, te convertirás en un experto en el trabajo con APIs.
+[RapidAPI](https://rapidapi.com/hub)
+[API de Asesor de Viajes](https://rapidapi.com/apidojo/api/travel-advisor/)
+[API de Open Weather Map](https://openweathermap.org/)
 
-[RapidAPI](https://rapidapi.com/hub?utm_source=youtube.com/JavaScriptMastery&utm_medium=DevRel&utm_campaign=DevRel)
-[API de Asesor de Viajes](https://rapidapi.com/apidojo/api/travel-advisor?utm_source=youtube.com/JavaScriptMastery&utm_medium=DevRel&utm_campaign=DevRel)
-[API de Open Weather Map](https://rapidapi.com/community/api/open-weather-map?utm_source=youtube.com/JavaScriptMastery&utm_medium=DevRel&utm_campaign=DevRel)
-
-## Mantente al día con nuevos proyectos
-
-Próximamente habrá nuevos proyectos importantes. Suscríbete a la lista de correo para mantenerte al día: https://javascriptmastery.eo.page/mailing-list.
+## Indicaciones de Ejecución
 
 Configuración: ejecuta `npm i && npm start` para iniciar el servidor de desarrollo asegurate de utilizar la versión 9.7.1 de npm y la versión 16.6.0 de node.
 
@@ -63,3 +55,6 @@ Configuración: ejecuta `npm i && npm start` para iniciar el servidor de desarro
   - Ejecutar el comando npm i && npm start con la versión 16.6.0 de node
   - En el header de la aplicación se ha colocado un botón en forma de sol, donde solo se necesita presionarlo para cambiar
     el tema de la aplicación.
+
+## Primer Avance
+A continuación esta el documento actualizado del primer avance del proyecto: [Primer Avance Proyecto](https://docs.google.com/document/d/1b0Ge7YcObo1NSOVsYbo-NO9hCcN8ujctWtFGhJB7GfE/edit?usp=sharing) 
