@@ -1,6 +1,6 @@
 # Asesor de Viajes
 
-![Asesor de Viajes](https://i.ibb.co/qph2cZn/image.pngg)
+![Asesor de Viajes](./TraveForecast.jpeg)
 
 ## Introducción
 
