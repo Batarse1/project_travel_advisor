@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { useLoadScript } from '@react-google-maps/api';
-import { CssBaseline, Grid } from '@material-ui/core';
-
-import { getPlacesData, getWeatherData } from './api/travelAdvisorAPI';
+import { CssBaseline, Grid, ThemeProvider } from '@material-ui/core';
+import { createTheme } from '@material-ui/core/styles';
+import { getPlacesData } from './api/travelAdvisorAPI';
 import Header from './components/Header/Header';
 import List from './components/List/List';
 import Map from './components/Map/Map';
+import './App.css';
+import Footer from './components/Footer/footer';
 
 const App = () => {
   const [type, setType] = useState('restaurants');
@@ -14,13 +15,12 @@ const App = () => {
   const [coords, setCoords] = useState({});
   const [bounds, setBounds] = useState(null);
 
-  const [weatherData, setWeatherData] = useState([]);
   const [filteredPlaces, setFilteredPlaces] = useState([]);
   const [places, setPlaces] = useState([]);
 
-  const [autocomplete, setAutocomplete] = useState(null);
   const [childClicked, setChildClicked] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(({ coords: { latitude, longitude } }) => {
@@ -38,9 +38,6 @@ const App = () => {
     if (bounds) {
       setIsLoading(true);
 
-      getWeatherData(coords.lat, coords.lng)
-        .then((data) => setWeatherData(data));
-
       getPlacesData(type, bounds.sw, bounds.ne)
         .then((data) => {
           setPlaces(data.filter((place) => place.name && place.num_reviews > 0));
@@ -51,27 +48,26 @@ const App = () => {
     }
   }, [bounds, type]);
 
-  const onLoad = (autoC) => setAutocomplete(autoC);
-
-  const onPlaceChanged = () => {
-    const lat = autocomplete.getPlace().geometry.location.lat();
-    const lng = autocomplete.getPlace().geometry.location.lng();
-
-    setCoords({ lat, lng });
-  };
-
-  const reactMapKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
-
-  const { isLoaded } = useLoadScript({
-    googleMapsApiKey: reactMapKey,
+  const theme = createTheme({
+    palette: {
+      type: darkMode ? 'dark' : 'light',
+      primary: {
+        main: darkMode ? '#407C87' : '#A7E0E9',
+      },
+      secondary: {
+        main: '#FFF7EC',
+      },
+    },
   });
 
-  if (!isLoaded) return 'Loading...';
+  const handleThemeChange = () => {
+    setDarkMode(!darkMode);
+  };
 
   return (
-    <>
+    <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Header onPlaceChanged={onPlaceChanged} onLoad={onLoad} />
+      <Header darkMode={darkMode} handleThemeChange={handleThemeChange} />
       <Grid container spacing={3} style={{ width: '100%' }}>
         <Grid item xs={12} md={4}>
           <List
@@ -91,11 +87,11 @@ const App = () => {
             setCoords={setCoords}
             coords={coords}
             places={filteredPlaces.length ? filteredPlaces : places}
-            weatherData={weatherData}
           />
         </Grid>
       </Grid>
-    </>
+      <Footer />
+    </ThemeProvider>
   );
 };
 

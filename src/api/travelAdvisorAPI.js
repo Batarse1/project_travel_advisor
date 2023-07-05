@@ -18,24 +18,7 @@ export const getPlacesData = async (type, sw, ne) => {
 
     return data;
   } catch (error) {
-    console.log(error);
-    return [];
-  }
-};
-
-export const getWeatherData = async (lat, lng) => {
-  try {
-    if (lat && lng) {
-      const { data } = await axios.get(`https://open-weather13.p.rapidapi.com/city/latlon/${lat}/${lng}`, {
-        headers: {
-          'x-rapidapi-key': process.env.REACT_APP_RAPID_API_WEATHER_API_KEY,
-          'x-rapidapi-host': 'open-weather13.p.rapidapi.com',
-        },
-      });
-
-      return data;
-    }
-  } catch (error) {
+    // eslint-disable-next-line no-console
     console.log(error);
     return [];
   }

@@ -1,0 +1,16 @@
+/* Estilos para la barra de desplazamiento */
+::-webkit-scrollbar {
+    width: 3px;
+  }
+  
+  /* Estilos para el riel de la barra de desplazamiento */
+  ::-webkit-scrollbar-track {
+    background-color: #A7E0E9;
+  }
+  
+  /* Estilos para el pulgar de la barra de desplazamiento */
+  ::-webkit-scrollbar-thumb {
+    background-color: #407C87;
+    border-radius: 5px;
+  }
+  
